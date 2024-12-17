@@ -77,6 +77,14 @@ public class QuizController {
     @PostMapping("/submit")
     public ResponseEntity<Response> submitAnswer(@RequestParam Long sessionId, @RequestParam Long questionId, @RequestParam String selectedOption) {
         try {
+            if (!selectedOption.matches("[abcdABCD]")) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Response.builder()
+                    .responseTime(LocalDateTime.now())
+                    .status(HttpStatus.BAD_REQUEST)
+                    .statusCode(HttpStatus.BAD_REQUEST.value())
+                    .message("Invalid option selected. Please choose a, b, c, or d.")
+                    .build());
+            }
             boolean isCorrect = quizService.submitAnswer(sessionId, questionId, selectedOption);
             return ResponseEntity.ok(Response.builder()
                 .responseTime(LocalDateTime.now())

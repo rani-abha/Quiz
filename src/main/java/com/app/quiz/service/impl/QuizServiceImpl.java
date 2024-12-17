@@ -39,7 +39,7 @@ public class QuizServiceImpl implements QuizService {
         quizSession.setExpired(false);
 
         QuizSession savedSession = quizSessionRepository.save(quizSession);
-        scheduler.schedule(() -> expireSession(savedSession.getSessionId()), 1, TimeUnit.MINUTES);
+        scheduler.schedule(() -> expireSession(savedSession.getSessionId()), 5, TimeUnit.MINUTES);
         return savedSession;
     }
 
