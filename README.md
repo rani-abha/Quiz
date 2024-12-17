@@ -24,7 +24,7 @@ To run this application, ensure the following are installed:
 ### 1. Clone the Repository
 
 ```bash
-git clone <your-repository-url>
+git clone https://github.com/rani-abha/Quiz.git
 cd quiz-application
 ```
 
